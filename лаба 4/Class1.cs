@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,27 +9,29 @@ namespace лаба_4
     public class TaskSolver
     {
         // Задание 1
-        public static List<int> GetUniqueElements(List<int> L1, List<int> L2)
+        public static List<T> GetUniqueElements<T>(List<T> L1, List<T> L2)
         {
-            var result = new List<int>();
-            foreach (var item in L1) 
+            var result = new List<T>();
+            foreach (var item in L1)
             {
-                if (!L2.Contains(item) && !result.Contains(item)) 
+                if (!L2.Contains(item) && !result.Contains(item))
                 {
-                    result.Add(item); 
+                    result.Add(item);
                 }
             }
-            return result; 
+            return result;
         }
 
         // Задание 2
-        public static bool IsSymmetricSection(LinkedList<int> list, int i, int j)
+        public static bool IsSymmetricSection<T>(LinkedList<T> list, int i, int j)
         {
-            var tempList = list.Skip(i).Take(j - i + 1).ToList(); 
+            var tempList = list.Skip(i).Take(j - i + 1).ToList();
             int count = tempList.Count;
-            for (int k = 0; k < count / 2; k++) 
+
+            for (int k = 0; k < count / 2; k++)
             {
-                if (tempList[k] != tempList[count - k - 1]) 
+                //Console.WriteLine(tempList[k] + " " + tempList[count - k - 1]);
+                if (!EqualityComparer<T>.Default.Equals(tempList[k], tempList[count - k - 1]))
                     return false;
             }
             return true;
